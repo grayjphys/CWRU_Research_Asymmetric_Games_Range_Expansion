@@ -12,3 +12,5 @@ For a given number of total trajectories per initiation site (for example 1024),
 ./runningall.sh 1024 10000000
 
 ###########################################################################################################
+
+To create a text file of the initial wild-type wave, change the Get_Init_Wave.py file to point to the proper directories, and change rw=0.1 to the proper growth rates.
