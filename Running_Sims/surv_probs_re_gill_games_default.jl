@@ -64,10 +64,10 @@ using DelimitedFiles
 using Dates
 using StatsBase
 
-K = Int16(100)
+K = Int16(100) # carrying capacity.
 T=3_000_000 # default value of the number of timesteps in a given simulation. *Replaced by replace_vals.sh.
 snaps=3_000
-M=400 # Box size minus boundaries.
+M=400 # box size minus boundaries.
 L=(M+2)÷2-1 # Number of locations where mutants are initiated.
 EM = 18*M # Number of possible events (swapping, birth, death, etc.) times the number of sites gives the total number of unique events. 
 
