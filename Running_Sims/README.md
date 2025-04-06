@@ -1,6 +1,6 @@
 This folder contains all of the files needed to run 1D range expansion simulations with asymmetric game interactions as outlined in https://www.biorxiv.org/content/10.1101/2024.12.14.628506v1.
 
-##############################################################################################################################################################################
+#################################################################################################################################
 To change the interaction parameter sets one wants to test, one must modify the "runningall.sh" file. The current file looks at:
 
 Pwmm=-1.0, Pmwm=1.0 and correspondingly Pwmw=-Pwmm, Pmww=-Pmwm
