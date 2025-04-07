@@ -15,7 +15,7 @@ using LsqFit
 # so you might want to write your own code if you are interested in looking at these for your own parameter sets.
 
 to_plot = "surv"
-save_fig=true # default is to display the figures, make this true to save the figures.
+save_fig=false # default is to display the figures, make this true to save the figures.
 
 # sets where you want figures saved
 curdir=pwd()
