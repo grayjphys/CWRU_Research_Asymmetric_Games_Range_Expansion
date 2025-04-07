@@ -14,12 +14,15 @@ using LsqFit
 # Admittedly, the average surfing time plots are a bit specific to my data used in the paper, 
 # so you might want to write your own code if you are interested in looking at these for your own parameter sets.
 
-to_plot = "surfabide"
-save_fig=false # default is to display the figures, make this true to save the figures.
+to_plot = "surv"
+save_fig=true # default is to display the figures, make this true to save the figures.
 
 # sets where you want figures saved
 curdir=pwd()
-fig_dest=curdir*"\\Figs\\"
+fig_dest=curdir*"\\Figs\\"*to_plot*"\\"
+if !isdir(fig_dest)
+    mkdir(fig_dest)
+end 
 
 # If you have the data for the range expansion simulations, the parameters below tell you which data to plot.
 rws = [0.1,0.5,0.9] # plots to be made for wild-type growth rates of 0.1, 0.5, and 0.9.
@@ -317,27 +320,28 @@ for gnum in 1:4
 
                 if Bulk_BC >= 1.0/K
 
-                    g = 1.0 ./(2.0 .*D .+h .* vw_front)
+                    g = 1.0 / (2.0 * D + h * vw_front)
                     @inbounds for j in 3:length(xs)
-                        Us[j] =  g[j-1]*(
+                        Us[j] =  g*(
                                     4.0*D*Us[j-1] 
                                 + 2.0*F[j-1]*(h^2)*Us[j-1] 
                                 - 2.0*(h^2)*J[j-1]*(Us[j-1]^2) 
                                 - 2.0*D*Us[j-2] 
-                                + h*Us[j-2]*vw_front[j-1] )
+                                + h*Us[j-2]*vw_front )
                     end  
 
                 elseif Bulk_BC < 1.0/K
 
-                    g = 1.0 ./(2.0 .*D .+h .* vw_front)
+                    g = 1.0 / (2.0 * D + h * vw_front)
                     @inbounds for j in length(xs)-2:-1:1
-                        Us[j] =  g[j+1]*(
+                        Us[j] =  g*(
                                     4.0*D*Us[j+1] 
                                 + 2.0*F[j+1]*(h^2)*Us[j+1] 
                                 - 2.0*(h^2)*J[j+1]*(Us[j+1]^2) 
                                 - 2.0*D*Us[j+2] 
-                                + h*Us[j+2]*vw_front[j+1] )
+                                + h*Us[j+2]*vw_front )
                     end   
+
                 end
 
                 # Total survival is the sum of the surfing and abiding probabilities, alternatively one could write 1.0 .- data[5,:]
@@ -389,7 +393,7 @@ for gnum in 1:4
             plot!(p,ylims=(-0.01,1.01))
             display(p)
             if save_fig == true
-                savefig(p,"Figs/paper_rw_$(rw)_Pwmm_$(Pwmm)_Pmwm_$(Pmwm)_no_num_psurv_multiple_rms.png")
+                savefig(p,fig_dest*"/paper_rw_$(rw)_Pwmm_$(Pwmm)_Pmwm_$(Pmwm)_no_num_psurv_multiple_rms.png")
             end
         elseif to_plot == "times"
             println(to_plot)
@@ -429,7 +433,7 @@ for gnum in 1:4
 
             display(q)
             if save_fig == true
-                savefig(q,"Figs/paper_rw_$(rw)_Pwmm_$(Pwmm)_Pmwm_$(Pmwm)_times_multiple_rms.png")
+                savefig(q,fig_dest*"/paper_rw_$(rw)_Pwmm_$(Pwmm)_Pmwm_$(Pmwm)_times_multiple_rms.png")
             end
         end
     end
