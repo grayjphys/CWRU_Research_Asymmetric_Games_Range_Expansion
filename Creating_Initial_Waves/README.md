@@ -9,6 +9,12 @@ file. The current file looks at:
 
 rw = 0.1, rw = 0.5, and rw = 0.9
 
+In order for the files to work you must first run the commands:
+
+chmod +x runningall.sh
+
+chmod +x replace_vals.sh
+
 ###########################################################################################################
 
 ***IMPORTANT: You must first update the job_init_wave_default.slurm file to account for changes in where
