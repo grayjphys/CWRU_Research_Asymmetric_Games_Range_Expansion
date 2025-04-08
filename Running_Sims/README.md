@@ -17,16 +17,25 @@ and task_id=23 corresponding to Pwmm=-1.0, Pmwm=1.0 are finished (notice that th
 The task_id is the id of one of the tasks in the task array in slurm.
 
 For these parameter sets one needs to make the directories:
+
 Pwmm_-1.0_Pwmw_1.0_Pmwm_1.0_Pmww_-1.0/
+
 Pwmm_0.5_Pwmw_-0.5_Pmwm_-0.25_Pmww_0.25/
+
 Pwmm_0.5_Pwmw_-0.5_Pmwm_0.75_Pmww_-0.75/
+
 Pwmm_-0.25_Pwmw_0.25_Pmwm_0.75_Pmww_-0.75/
 
 In order for the files to work properly one needs to run the following commands:
+
 chmod +x runningall.sh
+
 chmod +x replace_vals.sh
+
 cp job_surv_probs_default.slurm job_surv_probs.slurm 
+
 cp surv_probs_re_gill_games_default.jl surv_probs_re_gill_games.jl 
+
 for d in */; do cp *surv_probs* continuous_init_wave-rw_0.* $d; done
 
 ###########################################################################################################
