@@ -39,7 +39,7 @@ cp job_surv_probs_default.slurm job_surv_probs.slurm
 
 cp surv_probs_re_gill_games_default.jl surv_probs_re_gill_games.jl 
 
-for d in */; do cp *surv_probs* continuous_init_wave-rw_0.* $d; done
+for d in \*/; do cp \*surv_probs\* continuous_init_wave-rw_0.\* $d; done
 
 ###########################################################################################################
 
