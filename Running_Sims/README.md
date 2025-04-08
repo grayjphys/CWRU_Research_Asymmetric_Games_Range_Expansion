@@ -16,6 +16,12 @@ simulations of job_id=1234 and task_id=23 corresponding to Pwmm=0.5, Pmwm=-0.25 
 and task_id=23 corresponding to Pwmm=-1.0, Pmwm=1.0 are finished (notice that the task_id is the same). 
 The task_id is the id of one of the tasks in the task array in slurm.
 
+For these parameter sets one needs to make the directories:
+Pwmm_-1.0_Pwmw_1.0_Pmwm_1.0_Pmww_-1.0/
+Pwmm_0.5_Pwmw_-0.5_Pmwm_-0.25_Pmww_0.25/
+Pwmm_0.5_Pwmw_-0.5_Pmwm_0.75_Pmww_-0.75/
+Pwmm_-0.25_Pwmw_0.25_Pmwm_0.75_Pmww_-0.75/
+
 ###########################################################################################################
 
 In order to simulate arbitrary wild-type growth rates (rw) one needs to create a new initial wave profile 
