@@ -7,8 +7,11 @@ To change the interaction parameter sets one wants to test, one must modify the 
 The current file looks at:
 
 Pwmm=-1.0, Pmwm=1.0 and correspondingly Pwmw=-Pwmm, Pmww=-Pmwm
+
 Pwmm=0.5, Pmwm=-0.25 and correspondingly Pwmw=-Pwmm, Pmww=-Pmwm
+
 Pwmm=0.5, Pmwm=0.75 and correspondingly Pwmw=-Pwmm, Pmww=-Pmwm
+
 Pwmm=-0.25, Pmwm=0.75 and correspondingly Pwmw=-Pwmm, Pmww=-Pmwm
 
 Each successive chunk of code starting at line 14 is dependent on the last. This means that (for example) 
