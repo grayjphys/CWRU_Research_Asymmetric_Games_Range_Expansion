@@ -58,10 +58,3 @@ intrinsic mutant growth rate (for example rm=0.9), one would run the following c
 ./runningall.sh 1024 10000000 0.5 0.9
 
 ###########################################################################################################
-
-To track the progress of your running sims you can run:
-
-./progress 64 1024 150
-
-Where 64 is the size of the array in job_surv_probs_default.slurm, 1024 is the total number of sims, and 
-150 is the number of mutant initiation sites.
