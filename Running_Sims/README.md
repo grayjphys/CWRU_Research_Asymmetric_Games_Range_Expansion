@@ -22,6 +22,13 @@ Pwmm_0.5_Pwmw_-0.5_Pmwm_-0.25_Pmww_0.25/
 Pwmm_0.5_Pwmw_-0.5_Pmwm_0.75_Pmww_-0.75/
 Pwmm_-0.25_Pwmw_0.25_Pmwm_0.75_Pmww_-0.75/
 
+In order for the files to work properly one needs to run the following commands:
+chmod +x runningall.sh
+chmod +x replace_vals.sh
+cp job_surv_probs_default.slurm job_surv_probs.slurm 
+cp surv_probs_re_gill_games_default.jl surv_probs_re_gill_games.jl 
+for d in */; do cp *surv_probs* continuous_init_wave-rw_0.* $d; done
+
 ###########################################################################################################
 
 In order to simulate arbitrary wild-type growth rates (rw) one needs to create a new initial wave profile 
