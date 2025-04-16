@@ -14,12 +14,12 @@ using LsqFit
 # Admittedly, the average surfing time plots are a bit specific to my data used in the paper, 
 # so you might want to write your own code if you are interested in looking at these for your own parameter sets.
 
-to_plot = "surv"
-save_fig=false # default is to display the figures, make this true to save the figures.
+to_plot = "surfabide"
+save_fig=true # default is to display the figures, make this true to save the figures.
 
 # sets where you want figures saved
 curdir=pwd()
-fig_dest=curdir*"\\Figs\\"*to_plot*"\\"
+fig_dest=curdir*"\\Figs\\"*to_plot*"_plots\\"
 if !isdir(fig_dest)
     mkdir(fig_dest)
 end 
@@ -137,7 +137,7 @@ for gnum in 1:4
                 end
             end
         end
-        
+
         # The first dimension of gamedirs corresponds to how many rms per rw per game you did.
         # Assuming you tested the same number of rms for each. 
         num_rms = length(gamedirs) 
@@ -162,14 +162,27 @@ for gnum in 1:4
         ws=winit_eq(xs,w_coeffs) # creates an array of values of the new function for every x in xs. 
         vs = 1.0 .- ws  # creates an array of values for the initial vacancy distribution for every x in xs. 
 
-        p = plot()  # p is for the numerical + scatter survival probability plots
+        p = plot() # p is for the numerical + scatter survival probability plots
+        plot!(foreground_color_legend = nothing,
+        background_color_legend = nothing)  
+        scatter!([130],[0.7],
+        label=" ",
+        markercolor=:white,
+        markerstrokecolor=:white,
+        markeralpha=0.0,
+        markersize=0.0)
+        scatter!([130],[0.7],
+        label=" ",
+        markercolor=:white,
+        markerstrokecolor=:white,
+        markeralpha=0.0,
+        markersize=0.0)
         q = plot()  # q is for the scatter average surfing time plots
         counter = 1 # helps to avoid redundant plotting
         max_time = 0.0 # helps with scaling axes for the average surfing time plots
         min_time = 1e32 # helps with scaling axes for the average surfing time plots
 
-        for (dirnum,dir) in enumerate(gamedirs) # for each rw, rm, and game 
-
+        for (dirnum,dir) in enumerate(gamedirs[end:-1:1]) # for each rw, rm, and game 
             # Below are calculations of the wave speeds of the initial wave profile 
             # You can optionally calculate wave speeds for the mutant in the bulk and at the front. 
 
@@ -219,10 +232,11 @@ for gnum in 1:4
                 ylabel=L"\textrm{Probability}",
                 ylabelfontsize=18,
                 leftmargin=5mm,
-                xlabel=L"\textrm{Initiation}\;\textrm{Site}\;(x)",
+                xlabel=L"\textrm{Initiation}\;\textrm{Site}\;x",
                 xlabelfontsize=18,
                 xtickfontsize=16,
-                margin=5mm)
+                margin=5mm,
+                foreground_color_legend = nothing)
 
                 if rm < 0.6
                     plot!(z,legend=:topright,legendfontsize=18)
@@ -270,19 +284,18 @@ for gnum in 1:4
                 if counter == 1
                     plot!(p,grid=false,
                     border=:box,
-                    # legend=:outerright,
+                    legend=:best,
                     size=(900,600),
                     xlims=(0,150),
                     yticks=LinRange(0.0,1.0,11),
                     ytickfontsize=16,
-                    ylabel=L"\textrm{Survival}\;\textrm{Probability}",
+                    ylabel=L"\textrm{Survival}\;\;\textrm{Probability}",
                     ylabelfontsize=18,
                     leftmargin=5mm,
-                    xlabel=L"\textrm{Initiation}\;\textrm{Site}\;(x)",
+                    xlabel=L"\textrm{Initiation}\;\textrm{Site}\;x",
                     xlabelfontsize=18,
                     xtickfontsize=16,
                     margin=5mm, 
-                    legend=true, 
                     legendfontsize=18)
 
                     plot!(p, xs, ws,
@@ -346,6 +359,7 @@ for gnum in 1:4
 
                 # Total survival is the sum of the surfing and abiding probabilities, alternatively one could write 1.0 .- data[5,:]
                 surv_data = data[1,:].+data[2,:]
+
                 scatter!(p,surv_data,
                          label=L"r_m="*latexstring("$(rm)"),
                          markercolor=colors[counter],
@@ -406,7 +420,7 @@ for gnum in 1:4
             ylabel=L"\textrm{Surfing}\;\textrm{Time}",
             ylabelfontsize=18,
             leftmargin=5mm,
-            xlabel=L"\textrm{Initiation}\;\textrm{Site}\;(x)",
+            xlabel=L"\textrm{Initiation}\;\textrm{Site}\;x",
             xlabelfontsize=18,
             xtickfontsize=16,
             bottommargin=5mm,
